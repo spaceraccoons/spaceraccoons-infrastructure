@@ -1,0 +1,7 @@
+# Continuous integration workflows
+/.github/workflows/ @headcr4sh
+
+# Editor configuration and IDE integration
+/.editorconfig @headcr4sh
+/.mailmap @headcr4sh
+/.vscode/ @headcr4sh
