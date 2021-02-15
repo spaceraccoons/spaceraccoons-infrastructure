@@ -12,7 +12,7 @@ jobs:
       - name: Checkout from SCM
         uses: actions/checkout@v1
       - name: Run tfsec
-        uses: tfsec/tfsec-sarif-action@0.0.4
+        uses: tfsec/tfsec-sarif-action@v0.0.4
         with:
           sarif_file: tfsec.sarif
           github_token: ${{ secrets.github_token }}
