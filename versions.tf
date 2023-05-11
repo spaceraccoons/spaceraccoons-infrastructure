@@ -2,12 +2,12 @@ terraform {
   required_providers {
     github = {
       source  = "integrations/github"
-      version = "4.4.0"
+      version = ">= 5.25.0"
     }
     hetznerdns = {
       source  = "timohirt/hetznerdns"
-      version = "1.1.1"
+      version = ">= 2.2.0"
     }
   }
-  required_version = ">= 0.14"
+  required_version = ">= 1.4"
 }

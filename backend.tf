@@ -3,7 +3,7 @@ terraform {
     organization = "spaceraccoons"
 
     workspaces {
-      name = "default"
+      name = "spaceraccoons-infrastructure"
     }
   }
 }

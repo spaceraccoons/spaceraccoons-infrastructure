@@ -1,0 +1,8 @@
+/.github/
+/.terraform/
+/.vscode/
+/.editorconfig
+/.gitignore
+/.gitattributes
+/.terraformignore
+/README.tf
