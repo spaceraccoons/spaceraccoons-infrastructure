@@ -1,11 +1,15 @@
 locals {
-  hetznerdns_ns_servers = [
+  hetznerdns_ns_servers = toset([
     "helium.ns.hetzner.com",
     "hydrogen.ns.hetzner.com",
     "oxygen.ns.hetzner.com",
-  ]
+  ])
 
   github_domain_verifications = {
+
+    "_github-pages-challenge-spaceraccoons"         = "1e99d7cf6810ae8dac28010512c1f9"
+    "_github-pages-challenge-spaceraccoons.schemas" = "fb705081b245cc4a992999dd6cc358"
+
     "_github-challenge-spaceraccoons"         = "b469e022ce"
     "_github-challenge-spaceraccoons.api"     = "13079d421e"
     "_github-challenge-spaceraccoons.blog"    = "ac0aef81b0"
