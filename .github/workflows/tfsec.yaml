@@ -2,12 +2,12 @@ name: tfsec
 on:
   push:
     branches:
-    - main
+    - "**"
   pull_request:
 jobs:
   tfsec:
     name: tfsec sarif report
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout from SCM
         uses: actions/checkout@v2
