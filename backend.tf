@@ -1,7 +1,6 @@
 terraform {
-  backend "remote" {
+  cloud {
     organization = "spaceraccoons"
-
     workspaces {
       name = "spaceraccoons-infrastructure"
     }

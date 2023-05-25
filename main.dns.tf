@@ -1,23 +1,13 @@
 locals {
-  hetznerdns_ns_servers = toset([
-    "helium.ns.hetzner.com",
+  hetznerdns_ns_servers = [
     "hydrogen.ns.hetzner.com",
     "oxygen.ns.hetzner.com",
-  ])
+    "helium.ns.hetzner.com",
+  ]
 
   github_domain_verifications = {
-
     "_github-pages-challenge-spaceraccoons"         = "1e99d7cf6810ae8dac28010512c1f9"
     "_github-pages-challenge-spaceraccoons.schemas" = "fb705081b245cc4a992999dd6cc358"
-
-    "_github-challenge-spaceraccoons"         = "b469e022ce"
-    "_github-challenge-spaceraccoons.api"     = "13079d421e"
-    "_github-challenge-spaceraccoons.blog"    = "ac0aef81b0"
-    "_github-challenge-spaceraccoons.news"    = "2a8148c30c"
-    "_github-challenge-spaceraccoons.play"    = "49cb16517e"
-    "_github-challenge-spaceraccoons.schemas" = "4cbe5a794e"
-    "_github-challenge-spaceraccoons.shop"    = "2fb5c15776"
-    "_github-challenge-spaceraccoons.www"     = "f1fe2b7773"
   }
 }
 
@@ -26,13 +16,31 @@ resource "hetznerdns_zone" "this" {
   ttl  = 86400
 }
 
-resource "hetznerdns_record" "ns" {
-  for_each = toset(local.hetznerdns_ns_servers)
+resource "hetznerdns_record" "apex_a" {
+  for_each = var.github_pages_dns_recods.a
   zone_id  = hetznerdns_zone.this.id
   name     = "@"
-  value    = "${each.key}."
-  type     = "NS"
-  ttl      = 86400
+  value    = each.value
+  type     = "A"
+  ttl      = 60 * 60 * 24
+}
+
+resource "hetznerdns_record" "apex_aaaa" {
+  for_each = var.github_pages_dns_recods.aaaa
+  zone_id  = hetznerdns_zone.this.id
+  name     = "@"
+  value    = each.value
+  type     = "AAAA"
+  ttl      = 60 * 60 * 24
+}
+
+resource "hetznerdns_record" "ns" {
+  count   = length(local.hetznerdns_ns_servers)
+  zone_id = hetznerdns_zone.this.id
+  name    = "@"
+  value   = "${local.hetznerdns_ns_servers[count.index]}."
+  type    = "NS"
+  ttl     = 60 * 60 * 24
 }
 
 resource "hetznerdns_record" "github_domain_verification" {

@@ -8,8 +8,13 @@ resource "github_repository" "this" {
   description  = var.description
   auto_init    = false
   visibility   = "public"
-  homepage_url = "https://www.spaceraccoons.com/"
+  homepage_url = "https://spaceraccoons.com/"
   topics       = var.topics
+
+  has_issues    = true
+  has_downloads = true
+  has_wiki      = false
+  has_projects  = false
 
   license_template = "mpl-2.0"
 
